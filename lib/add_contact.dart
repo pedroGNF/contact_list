@@ -1,41 +1,93 @@
-// ignore_for_file: unused_import
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter/foundation.dart';
+// ignore: unused_import
 import 'package:mobx/mobx.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
+import 'main.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const AddContatos());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AddContatos extends StatelessWidget {
+  const AddContatos({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-       darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData.dark(),
       title: 'Contato form',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+     home: Scaffold(
+      appBar: AppBar(
+        title: const Text('Cadastro'),
+      ),
+      body: Form(
+        key: null,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Wrap(
+            spacing: 20,
+            runSpacing: 10,
+            children: <Widget>[
+              TextFormField(
+                validator: nomeValidator(),
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), labelText: "Nome"),
+                maxLength: 100,
+              ),
+              TextFormField(
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  TelefoneInputFormatter(),
+                ],
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), labelText: "Celular"),
+              ),
+              TextFormField(
+                validator: emailValidator(),
+                onChanged: emailUpdate(),
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), labelText: "E-mail"),
+                maxLength: 100,
+              ),
+              TextFormField(
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  CpfInputFormatter(),
+                ],
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), labelText: "CPF"),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState.validate()) {
+                      if (kDebugMode) {
+                        Object? contato;
+                        print(contato);
+                      }
+                    }
+                  },
+                  child: const Text("Salvar"))
+            ],
+          ),
+        ),
+      ),
+     )
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-  @override
-  // ignore: library_private_types_in_public_api
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   ContatoModel contato = ContatoModel();
 
   @override
@@ -98,6 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+}
 
   TextFieldValidator emailValidator() {
     return EmailValidator(errorText: 'email invalido.');
@@ -109,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
       MinLengthValidator(4, errorText: 'tamanho mínimo de 4 caracteres'),
     ]); // Multivalidator
   }
-}
+
 
 nomeUpdate(nome) {}
 

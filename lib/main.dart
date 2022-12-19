@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'add_contact.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +41,9 @@ class _MyHomePageState extends State<MyHomePage> {
         tipo: ContatoType.favorito));
 
     contatos.add(Contato(
-        nome: "Beatriz", telefone: "(91) 97935-0397", tipo: ContatoType.casa));
+        nome: "Beatriz",
+        telefone: "(91) 97935-0397",
+        tipo: ContatoType.casa));
 
     contatos.add(Contato(
         nome: "Danielle",
@@ -48,10 +51,14 @@ class _MyHomePageState extends State<MyHomePage> {
         tipo: ContatoType.celular));
 
     contatos.add(Contato(
-        nome: "Lia", telefone: "(91) 97490-7028", tipo: ContatoType.casa));
+        nome: "Lia",
+        telefone: "(91) 97490-7028",
+        tipo: ContatoType.casa));
 
     contatos.add(Contato(
-        nome: "Clara", telefone: "(91) 93581-9086", tipo: ContatoType.casa));
+        nome: "Clara",
+        telefone: "(91) 93581-9086",
+        tipo: ContatoType.casa));
 
     contatos.add(Contato(
         nome: "Amanda",
@@ -64,7 +71,9 @@ class _MyHomePageState extends State<MyHomePage> {
         tipo: ContatoType.trabalho));
 
     contatos.add(Contato(
-        nome: "Maria", telefone: "(91) 92634-5687", tipo: ContatoType.casa));
+        nome: "Maria",
+        telefone: "(91) 92634-5687",
+        tipo: ContatoType.casa));
 
     contatos.add(Contato(
         nome: "Geovanna",
@@ -72,7 +81,9 @@ class _MyHomePageState extends State<MyHomePage> {
         tipo: ContatoType.celular));
 
     contatos.add(Contato(
-        nome: "Ely", telefone: "(91) 96013-2267", tipo: ContatoType.casa));
+        nome: "Ely",
+        telefone: "(91) 96013-2267",
+        tipo: ContatoType.casa));
 
     contatos.add(Contato(
         nome: "Camila",
@@ -90,35 +101,39 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Meus contatos'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {},
-          )
-        ],
-      ),
-      body: ListView.separated(
-                itemBuilder: (context, index) {
-                  var contato = contatos[index];
-                  return ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: const Color.fromARGB(255, 1, 25, 145),
-                      child: ContatoHelper.getIconByContatoType(contato.tipo),
-                    ),
-                    title: Text(contato.nome),
-                    subtitle: Text(contato.telefone),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.call_rounded,
-                          color: Color.fromARGB(223, 13, 145, 68)),
-                      onPressed: () {},
-                    ),
-                  );
-                },
-                separatorBuilder: (context, index) => const Divider(),
-                itemCount: contatos.length));
+        appBar: AppBar(
+          title: const Text('Meus contatos'),
+          actions: [
+            IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: () => sendNewContato(context))
+          ],
+        ),
+        body: ListView.separated(
+            itemBuilder: (context, index) {
+              var contato = contatos[index];
+              return ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: const Color.fromARGB(255, 1, 25, 145),
+                  child: ContatoHelper.getIconByContatoType(contato.tipo),
+                ),
+                title: Text(contato.nome),
+                subtitle: Text(contato.telefone),
+                trailing: IconButton(
+                  icon: const Icon(Icons.call_rounded,
+                      color: Color.fromARGB(223, 13, 145, 68)),
+                  onPressed: () {},
+                ),
+              );
+            },
+            separatorBuilder: (context, index) => const Divider(),
+            itemCount: contatos.length));
   }
+}
+
+sendNewContato(BuildContext context) {
+  Navigator.of(context)
+  .push(MaterialPageRoute(builder: (_) => const AddContatos()));
 }
 
 class Contato {
