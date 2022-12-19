@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-// ignore: unused_import
-import 'package:mobx/mobx.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-
 import 'main.dart';
 
 void main() {
@@ -18,73 +15,81 @@ class AddContatos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      darkTheme: ThemeData.dark(),
-      title: 'Contato form',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-     home: Scaffold(
-      appBar: AppBar(
-        title: const Text('Cadastro'),
-      ),
-      body: Form(
-        key: null,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Wrap(
-            spacing: 20,
-            runSpacing: 10,
-            children: <Widget>[
-              TextFormField(
-                validator: nomeValidator(),
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: "Nome"),
-                maxLength: 100,
-              ),
-              TextFormField(
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
-                  TelefoneInputFormatter(),
-                ],
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: "Celular"),
-              ),
-              TextFormField(
-                validator: emailValidator(),
-                onChanged: emailUpdate(),
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: "E-mail"),
-                maxLength: 100,
-              ),
-              TextFormField(
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
-                  CpfInputFormatter(),
-                ],
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: "CPF"),
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                      if (kDebugMode) {
-                        Object? contato;
-                        print(contato);
-                      }
-                    }
-                  },
-                  child: const Text("Salvar"))
-            ],
-          ),
+        debugShowCheckedModeBanner: false,
+        darkTheme: ThemeData.dark(),
+        title: 'Contato form',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-      ),
-     )
-    );
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text('Cadastro'),
+          ),
+          body: Form(
+            key: null,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                spacing: 20,
+                runSpacing: 10,
+                children: <Widget>[
+                  TextFormField(
+                    validator: nomeValidator(),
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(), labelText: "Nome"),
+                    maxLength: 100,
+                  ),
+                  TextFormField(
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      TelefoneInputFormatter(),
+                    ],
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(), labelText: "Celular"),
+                  ),
+                  TextFormField(
+                    validator: emailValidator(),
+                    onChanged: emailUpdate(),
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(), labelText: "E-mail"),
+                    maxLength: 100,
+                  ),
+                  TextFormField(
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      CpfInputFormatter(),
+                    ],
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(), labelText: "CPF"),
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState.validate()) {
+                          if (kDebugMode) {
+                            Object? contato;
+                            print(contato);
+                          }
+                        }
+                      },
+                      child: const Text("Salvar")),
+                  ElevatedButton(
+                      onPressed: () {
+                        tema();
+                      },
+                      child: const Text("Tema"))
+                ],
+              ),
+            ),
+          ),
+        ));
   }
+}
+
+void tema() {
+  MaterialApp(darkTheme: ThemeData.light());
 }
 
 class MyHomePageState extends State<MyHomePage> {
@@ -95,6 +100,11 @@ class MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cadastro'),
+        actions: [
+          IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => sendNewContato(context)),
+        ],
       ),
       body: Form(
         key: null,
@@ -143,7 +153,12 @@ class MyHomePageState extends State<MyHomePage> {
                       }
                     }
                   },
-                  child: const Text("Salvar"))
+                  child: const Text("Salvar")),
+              ElevatedButton(
+                  onPressed: () {
+                    tema();
+                  },
+                  child: const Text("Tema"))
             ],
           ),
         ),
@@ -152,17 +167,16 @@ class MyHomePageState extends State<MyHomePage> {
   }
 }
 
-  TextFieldValidator emailValidator() {
-    return EmailValidator(errorText: 'email invalido.');
-  }
+TextFieldValidator emailValidator() {
+  return EmailValidator(errorText: 'email invalido.');
+}
 
-  FieldValidator nomeValidator() {
-    return MultiValidator([
-      RequiredValidator(errorText: 'campo obrigatório'),
-      MinLengthValidator(4, errorText: 'tamanho mínimo de 4 caracteres'),
-    ]); // Multivalidator
-  }
-
+FieldValidator nomeValidator() {
+  return MultiValidator([
+    RequiredValidator(errorText: 'campo obrigatório'),
+    MinLengthValidator(4, errorText: 'tamanho mínimo de 4 caracteres'),
+  ]); // Multivalidator
+}
 
 nomeUpdate(nome) {}
 

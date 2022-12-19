@@ -41,9 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
         tipo: ContatoType.favorito));
 
     contatos.add(Contato(
-        nome: "Beatriz",
-        telefone: "(91) 97935-0397",
-        tipo: ContatoType.casa));
+        nome: "Beatriz", telefone: "(91) 97935-0397", tipo: ContatoType.casa));
 
     contatos.add(Contato(
         nome: "Danielle",
@@ -51,14 +49,10 @@ class _MyHomePageState extends State<MyHomePage> {
         tipo: ContatoType.celular));
 
     contatos.add(Contato(
-        nome: "Lia",
-        telefone: "(91) 97490-7028",
-        tipo: ContatoType.casa));
+        nome: "Lia", telefone: "(91) 97490-7028", tipo: ContatoType.casa));
 
     contatos.add(Contato(
-        nome: "Clara",
-        telefone: "(91) 93581-9086",
-        tipo: ContatoType.casa));
+        nome: "Clara", telefone: "(91) 93581-9086", tipo: ContatoType.casa));
 
     contatos.add(Contato(
         nome: "Amanda",
@@ -71,9 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
         tipo: ContatoType.trabalho));
 
     contatos.add(Contato(
-        nome: "Maria",
-        telefone: "(91) 92634-5687",
-        tipo: ContatoType.casa));
+        nome: "Maria", telefone: "(91) 92634-5687", tipo: ContatoType.casa));
 
     contatos.add(Contato(
         nome: "Geovanna",
@@ -81,9 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
         tipo: ContatoType.celular));
 
     contatos.add(Contato(
-        nome: "Ely",
-        telefone: "(91) 96013-2267",
-        tipo: ContatoType.casa));
+        nome: "Ely", telefone: "(91) 96013-2267", tipo: ContatoType.casa));
 
     contatos.add(Contato(
         nome: "Camila",
@@ -106,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: [
             IconButton(
                 icon: const Icon(Icons.add),
-                onPressed: () => sendNewContato(context))
+                onPressed: () => sendNewContato(context)),
           ],
         ),
         body: ListView.separated(
@@ -133,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 sendNewContato(BuildContext context) {
   Navigator.of(context)
-  .push(MaterialPageRoute(builder: (_) => const AddContatos()));
+      .push(MaterialPageRoute(builder: (_) => const AddContatos()));
 }
 
 class Contato {
