@@ -40,9 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
         tipo: ContatoType.favorito));
 
     contatos.add(Contato(
-        nome: "Beatriz",
-        telefone: "(91) 97935-0397",
-        tipo: ContatoType.casa));
+        nome: "Beatriz", telefone: "(91) 97935-0397", tipo: ContatoType.casa));
 
     contatos.add(Contato(
         nome: "Danielle",
@@ -50,9 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
         tipo: ContatoType.celular));
 
     contatos.add(Contato(
-        nome: "Lia",
-        telefone: "(91) 97490-7028",
-        tipo: ContatoType.casa));
+        nome: "Lia", telefone: "(91) 97490-7028", tipo: ContatoType.casa));
 
     contatos.add(Contato(
         nome: "Clara", telefone: "(91) 93581-9086", tipo: ContatoType.casa));
@@ -60,44 +56,33 @@ class _MyHomePageState extends State<MyHomePage> {
     contatos.add(Contato(
         nome: "Amanda",
         telefone: "(91) 95638-0103",
-        tipo: ContatoType.trabalho
-        ));
+        tipo: ContatoType.trabalho));
 
     contatos.add(Contato(
         nome: "Roberto",
         telefone: "(91) 93684-0246",
-        tipo: ContatoType.trabalho
-        ));
+        tipo: ContatoType.trabalho));
 
     contatos.add(Contato(
-        nome: "Maria",
-        telefone: "(91) 92634-5687",
-        tipo: ContatoType.casa
-        ));
+        nome: "Maria", telefone: "(91) 92634-5687", tipo: ContatoType.casa));
 
     contatos.add(Contato(
         nome: "Geovanna",
         telefone: "(91) 93609-6067",
-        tipo: ContatoType.celular
-        ));
+        tipo: ContatoType.celular));
 
     contatos.add(Contato(
-        nome: "Ely",
-        telefone: "(91) 96013-2267",
-        tipo: ContatoType.casa
-        ));
+        nome: "Ely", telefone: "(91) 96013-2267", tipo: ContatoType.casa));
 
     contatos.add(Contato(
         nome: "Camila",
         telefone: "(91) 90789-1588",
-        tipo: ContatoType.favorito
-        ));
+        tipo: ContatoType.favorito));
 
     contatos.add(Contato(
         nome: "Sofia",
         telefone: "(91) 90145-4740",
-        tipo: ContatoType.favorito
-        ));
+        tipo: ContatoType.favorito));
 
     contatos.sort((a, b) => a.nome.compareTo(b.nome));
   }
@@ -105,24 +90,34 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView.separated(
-            itemBuilder: (context, index) {
-              var contato = contatos[index];
-              return ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: const Color.fromARGB(255, 1, 25, 145),
-                  child: ContatoHelper.getIconByContatoType(contato.tipo),
-                ),
-                title: Text(contato.nome),
-                subtitle: Text(contato.telefone),
-                trailing: IconButton(
-                  icon: const Icon(Icons.call_rounded, color: Color.fromARGB(223, 13, 145, 68)),
-                   onPressed: () {  },
-                  ),
-              );
-            },
-            separatorBuilder: (context, index) => const Divider(),
-            itemCount: contatos.length));
+      appBar: AppBar(
+        title: const Text('Meus contatos'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () {},
+          )
+        ],
+      ),
+      body: ListView.separated(
+                itemBuilder: (context, index) {
+                  var contato = contatos[index];
+                  return ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: const Color.fromARGB(255, 1, 25, 145),
+                      child: ContatoHelper.getIconByContatoType(contato.tipo),
+                    ),
+                    title: Text(contato.nome),
+                    subtitle: Text(contato.telefone),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.call_rounded,
+                          color: Color.fromARGB(223, 13, 145, 68)),
+                      onPressed: () {},
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) => const Divider(),
+                itemCount: contatos.length));
   }
 }
 
@@ -144,7 +139,8 @@ class ContatoHelper {
   static Icon getIconByContatoType(ContatoType tipo) {
     switch (tipo) {
       case ContatoType.celular:
-        return const Icon(Icons.phone_android, color: Color.fromARGB(223, 224, 224, 224));
+        return const Icon(Icons.phone_android,
+            color: Color.fromARGB(223, 224, 224, 224));
       case ContatoType.trabalho:
         return const Icon(Icons.work, color: Color.fromARGB(255, 61, 46, 40));
       case ContatoType.favorito:
