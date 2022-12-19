@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       darkTheme: ThemeData.dark(),
-      home: const MyHomePage(title: 'Flutter List App'),
+      home: const MyHomePage(title: 'Contact List App'),
     );
   }
 }
