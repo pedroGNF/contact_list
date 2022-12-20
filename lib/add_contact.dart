@@ -25,7 +25,37 @@ class AddContatos extends StatelessWidget {
         home: Scaffold(
           appBar: AppBar(
             title: const Text('Cadastro'),
+            actions: [
+              IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => backToList(context)),
+            ],
           ),
+          drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text('Drawer Header'),
+              ),
+              ListTile(
+                title: const Text('Item 1'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Item 2'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        ),
           body: Form(
             key: null,
             child: Padding(
@@ -92,6 +122,13 @@ void tema() {
   MaterialApp(darkTheme: ThemeData.light());
 }
 
+backToList(BuildContext context) {
+  Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => const MyHomePage(
+            title: 'oi',
+          )));
+}
+
 class MyHomePageState extends State<MyHomePage> {
   ContatoModel contato = ContatoModel();
 
@@ -100,12 +137,33 @@ class MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cadastro'),
-        actions: [
-          IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () => sendNewContato(context)),
-        ],
+
       ),
+      drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text('Drawer Header'),
+              ),
+              ListTile(
+                title: const Text('Item 1'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Item 2'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        ),
       body: Form(
         key: null,
         child: Padding(
