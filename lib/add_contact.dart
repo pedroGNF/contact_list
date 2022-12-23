@@ -4,6 +4,7 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'main.dart';
+import 'termos_de_uso.dart';
 
 void main() {
   runApp(const AddContatos());
@@ -32,30 +33,47 @@ class AddContatos extends StatelessWidget {
             ],
           ),
           drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
+            elevation: 5,
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                const UserAccountsDrawerHeader(
+              accountName: Text('Pedro'),
+              accountEmail: Text('pedrognfwork@gmail.com'),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                child: Text(
+                  'P',
+                  style: TextStyle(
+                      fontSize: 40, color: Color.fromRGBO(33, 150, 243, 1)),
                 ),
-                child: Text('Drawer Header'),
               ),
-              ListTile(
-                title: const Text('Item 1'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: const Text('Item 2'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
+            ),
+                ListTile(
+                  title: const Text('Novo Contato'),
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const AddContatos()));
+                  },
+                ),
+                ListTile(
+                  title: const Text('Contatos'),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  title: const Text('Termos de uso'),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const TermosDeUso(
+                              title: 'Termos de Uso',
+                            )));
+                  },
+                ),
+              ],
+            ),
           ),
-        ),
           body: Form(
             key: null,
             child: Padding(
@@ -136,34 +154,53 @@ class MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cadastro'),
-
+        title: const Text('Novo Contato'),
       ),
       drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
+        child: ListView(
+          padding: const EdgeInsets.all(0.0),
+          children: [
+            const UserAccountsDrawerHeader(
+              accountName: Text('Pedro'),
+              accountEmail: Text('pedrognfwork@gmail.com'),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                child: Text(
+                  'P',
+                  style: TextStyle(
+                      fontSize: 40, color: Color.fromRGBO(33, 150, 243, 1)),
                 ),
-                child: Text('Drawer Header'),
               ),
-              ListTile(
-                title: const Text('Item 1'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
+            ),
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(48, 130, 197, 1),
               ),
-              ListTile(
-                title: const Text('Item 2'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ),
+              child: Text('Pedro\npedrognfwork@gmail.com'),
+            ),
+            ListTile(
+              title: const Text('Novo Contato'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Contatos'),
+              onTap: () {
+                Navigator.of(context).pop(MaterialPageRoute(
+                    builder: (_) => const Lista(title: 'Lista de Contatos')));
+              },
+            ),
+            ListTile(
+              title: const Text('Termos de uso'),
+              onTap: () {
+                Navigator.of(context).pop(MaterialPageRoute(
+                    builder: (_) => const TermosDeUso(title: 'Termos de Uso')));
+              },
+            ),
+          ],
         ),
+      ),
       body: Form(
         key: null,
         child: Padding(
