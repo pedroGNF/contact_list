@@ -86,7 +86,7 @@ class AddContatos extends StatelessWidget {
                     validator: nomeValidator(),
                     decoration: const InputDecoration(
                         border: OutlineInputBorder(), labelText: "Nome"),
-                    maxLength: 100,
+                    maxLength: 999,
                   ),
                   TextFormField(
                     inputFormatters: [
@@ -96,13 +96,14 @@ class AddContatos extends StatelessWidget {
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                         border: OutlineInputBorder(), labelText: "Celular"),
+                        maxLength: 15,
                   ),
                   TextFormField(
                     validator: emailValidator(),
                     onChanged: emailUpdate(),
                     decoration: const InputDecoration(
                         border: OutlineInputBorder(), labelText: "E-mail"),
-                    maxLength: 100,
+                    maxLength: 999,
                   ),
                   TextFormField(
                     inputFormatters: [
@@ -112,6 +113,7 @@ class AddContatos extends StatelessWidget {
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                         border: OutlineInputBorder(), labelText: "CPF"),
+                        maxLength: 14,
                   ),
                   ElevatedButton(
                       onPressed: () {
