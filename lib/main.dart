@@ -195,4 +195,5 @@ class ContatoHelper {
         return const Icon(Icons.home, color: Color.fromARGB(255, 165, 48, 27));
     }
   }
+
 }

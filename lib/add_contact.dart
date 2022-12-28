@@ -15,6 +15,7 @@ class AddContatos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: prefer_typing_uninitialized_variables
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         darkTheme: ThemeData.dark(),
@@ -38,17 +39,17 @@ class AddContatos extends StatelessWidget {
               padding: EdgeInsets.zero,
               children: [
                 const UserAccountsDrawerHeader(
-              accountName: Text('Pedro'),
-              accountEmail: Text('pedrognfwork@gmail.com'),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                child: Text(
-                  'P',
-                  style: TextStyle(
-                      fontSize: 40, color: Color.fromRGBO(33, 150, 243, 1)),
+                  accountName: Text('Pedro'),
+                  accountEmail: Text('pedrognfwork@gmail.com'),
+                  currentAccountPicture: CircleAvatar(
+                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                    child: Text(
+                      'P',
+                      style: TextStyle(
+                          fontSize: 40, color: Color.fromRGBO(33, 150, 243, 1)),
+                    ),
+                  ),
                 ),
-              ),
-            ),
                 ListTile(
                   title: const Text('Novo Contato'),
                   onTap: () {
@@ -96,7 +97,7 @@ class AddContatos extends StatelessWidget {
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                         border: OutlineInputBorder(), labelText: "Celular"),
-                        maxLength: 15,
+                    maxLength: 15,
                   ),
                   TextFormField(
                     validator: emailValidator(),
@@ -113,8 +114,8 @@ class AddContatos extends StatelessWidget {
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                         border: OutlineInputBorder(), labelText: "CPF"),
-                        maxLength: 14,
-                  ),
+                    maxLength: 14,
+                  ),     
                   ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState.validate()) {
@@ -136,6 +137,13 @@ class AddContatos extends StatelessWidget {
           ),
         ));
   }
+
+  void updateTipoContato(ContatoType? value) {}
+
+  // ignore: non_constant_identifier_names
+  Observer(
+      {required DropdownButtonFormField<ContatoType> Function(dynamic _)
+          builder}) {}
 }
 
 void tema() {
